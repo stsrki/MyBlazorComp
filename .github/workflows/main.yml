@@ -25,4 +25,4 @@ jobs:
       run: dotnet restore
     
     - name: Build - Release
-      run: dotnet build --configuration Release --no-restore /p:Version=$TAG
+      run: dotnet build --configuration Release --no-restore

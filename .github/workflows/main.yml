@@ -16,15 +16,4 @@ jobs:
     - name: Echo - Latest Version Tag
       run: echo TAG=$TAG_VERSION
       env:
-        TAG_VERSION: $(git describe --tags $(git rev-list --tags --max-count=1))
-    
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.200
-    
-    - name: Restore NuGet Packages
-      run: dotnet restore
-    
-    - name: Build - Release
-      run: dotnet build --configuration Release --no-restore
+        TAG_VERSION: (git describe --tags $(git rev-list --tags --max-count=1))

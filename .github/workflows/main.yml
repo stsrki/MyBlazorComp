@@ -35,3 +35,17 @@ jobs:
       run: dotnet build --configuration Release --no-restore /p:Version=$VERSION
       env:
         VERSION: ${{ steps.latest_tag.outputs.VERSION }}
+        
+    - name: Publish - Release
+      run: dotnet publish --configuration Release --no-restore --no-build
+
+    - name: Pack - Release
+      run: dotnet pack --configuration Release --no-restore -o ./Packages /p:Version=$VERSION
+      env:
+        VERSION: ${{ steps.latest_tag.outputs.VERSION }}
+
+    - name: Upload Blazorise.Components
+      uses: actions/upload-artifact@v1
+      with:
+        name: Blazorise-Packages
+        path: ./Packages/

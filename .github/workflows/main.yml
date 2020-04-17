@@ -22,3 +22,16 @@ jobs:
         echo $VERSION
       env:
         VERSION: ${{ steps.latest_tag.outputs.VERSION }}
+        
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.200
+
+    - name: Restore NuGet Packages
+      run: dotnet restore
+      
+    - name: Build - Release
+      run: dotnet build --configuration Release --no-restore /p:Version=$VERSION
+      env:
+        VERSION: ${{ steps.latest_tag.outputs.VERSION }}

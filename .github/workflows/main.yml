@@ -1,0 +1,17 @@
+name: NuGet Build
+
+on:
+  create:
+    tags: 1.*
+    branches-ignore: '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+          
+    - name: Echo - Latest Version Tag
+      run: echo TAG=$(git describe --tags $(git rev-list --tags --max-count=1))

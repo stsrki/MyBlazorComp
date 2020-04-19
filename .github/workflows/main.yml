@@ -1,8 +1,8 @@
 name: NuGet Build
 
 on:
-  create:
-    tags: 1.*
+  push:
+    tags: '1.*'
     branches-ignore: '*'
 
 jobs:

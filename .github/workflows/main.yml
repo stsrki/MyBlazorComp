@@ -35,17 +35,6 @@ jobs:
       run: dotnet build --configuration Release --no-restore /p:Version=$VERSION
       env:
         VERSION: ${{ steps.latest_tag.outputs.VERSION }}
-        
-    - name: Publish - Release
-      run: dotnet publish --configuration Release --no-restore --no-build
-
-    - name: Pack - Release
-      run: dotnet pack --configuration Release --no-restore -o ./Packages /p:Version=$VERSION /p:PackageVersion=$VERSION
-      env:
-        VERSION: ${{ steps.latest_tag.outputs.VERSION }}
-    
-    - name: Push - Release
-      run: dotnet nuget push ./Packages/ -s https://www.myget.org/F/blazorisetest/api/v3/index.json -k ${{ secrets.MYGET_API_KEY }}
 
     - name: Upload Blazorise.Components
       uses: actions/upload-artifact@v1

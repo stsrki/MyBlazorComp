@@ -1,13 +1,18 @@
 name: NuGet Build
 
-on:
-  push:
-    tags: '1.*'
-    branches-ignore: '*'
-
+on: push
 jobs:
-  build:
+  release:    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create GitHub release
+        uses: Roang-zero1/github-create-release-action@master
+        with:
+          version_regex: ^([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  build:
     runs-on: ubuntu-latest
 
     steps:

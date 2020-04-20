@@ -1,6 +1,6 @@
 name: NuGet Build
 
-on: push
+on:
   push:
     tags:
       - '*'
